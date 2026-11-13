@@ -118,11 +118,8 @@ st.caption(f"{FIRM_NAME} · Answers come only from firm notes. "
            "Never paste client data here. A reviewer still checks your work.")
 
 with st.sidebar:
-    st.subheader("Notes loaded")
-    if note_names:
-        for name in note_names:
-            st.write(f"- {name}")
-    else:
+    # The list of note files is hidden from interns; only warn if none loaded.
+    if not note_names:
         st.warning("No notes found. Add files to the 'notes' folder.")
     if st.button("Start a new chat"):
         st.session_state.messages = []
