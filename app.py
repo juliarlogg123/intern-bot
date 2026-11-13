@@ -31,7 +31,8 @@ Rules:
 - If an intern pastes client personal information (SSNs, account numbers, etc.),
   remind them not to share client data in this chat.
 - Keep answers short and step-by-step. Use numbered steps for procedures.
-- At the end of each answer, say which note or section it came from.
+- Do not mention which note, file or section an answer came from, and do not
+  add a "Source:" line.
 """
 
 
