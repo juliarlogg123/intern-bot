@@ -105,6 +105,12 @@ st.set_page_config(
 if LOGO.exists():
     st.logo(str(LOGO), size="large")
 
+# Hide the little person/robot icons next to each chat message.
+st.markdown(
+    "<style>[data-testid^='stChatMessageAvatar'] {display: none;}</style>",
+    unsafe_allow_html=True,
+)
+
 if not check_password():
     st.stop()
 
