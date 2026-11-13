@@ -1,5 +1,5 @@
 """
-Intern Training Assistant
+Ask WBH - intern training assistant
 A simple chatbot that answers interns' questions using ONLY your firm's notes.
 
 Run locally with:   streamlit run app.py
@@ -80,7 +80,7 @@ def check_password() -> bool:
         return True
     if LOGO.exists():
         st.image(str(LOGO), width=220)
-    st.title("Intern Training Assistant")
+    st.title("Ask WBH")
     pw = st.text_input("Staff password", type="password")
     if pw:
         if pw == st.secrets["APP_PASSWORD"]:
@@ -99,7 +99,7 @@ def check_password() -> bool:
 LOGO = Path(__file__).parent / "assets" / "logo.png"
 
 st.set_page_config(
-    page_title="Intern Training Assistant",
+    page_title="Ask WBH",
     page_icon=str(LOGO) if LOGO.exists() else None,
 )
 if LOGO.exists():
@@ -113,7 +113,7 @@ client = anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 
 if LOGO.exists():
     st.image(str(LOGO), width=220)
-st.title("Intern Training Assistant")
+st.title("Ask WBH")
 st.caption(f"{FIRM_NAME} · Answers come only from firm notes. "
            "Never paste client data here. A reviewer still checks your work.")
 
