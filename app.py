@@ -78,6 +78,8 @@ def load_notes(fingerprint: tuple = ()) -> tuple[str, list[str]]:
 def check_password() -> bool:
     if st.session_state.get("authenticated"):
         return True
+    if LOGO.exists():
+        st.image(str(LOGO), width=220)
     st.title("Intern Training Assistant")
     pw = st.text_input("Staff password", type="password")
     if pw:
@@ -92,7 +94,16 @@ def check_password() -> bool:
 # ---------------------------------------------------------------------------
 # 4. THE CHAT PAGE
 # ---------------------------------------------------------------------------
-st.set_page_config(page_title="Intern Training Assistant", page_icon="📘")
+# Company logo: put your logo at assets/logo.png and it appears automatically
+# (top-left corner and the browser tab). No file = no logo, nothing breaks.
+LOGO = Path(__file__).parent / "assets" / "logo.png"
+
+st.set_page_config(
+    page_title="Intern Training Assistant",
+    page_icon=str(LOGO) if LOGO.exists() else None,
+)
+if LOGO.exists():
+    st.logo(str(LOGO), size="large")
 
 if not check_password():
     st.stop()
@@ -100,7 +111,9 @@ if not check_password():
 notes_text, note_names = load_notes(fingerprint=notes_fingerprint())
 client = anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 
-st.title("📘 Intern Training Assistant")
+if LOGO.exists():
+    st.image(str(LOGO), width=220)
+st.title("Intern Training Assistant")
 st.caption(f"{FIRM_NAME} · Answers come only from firm notes. "
            "Never paste client data here. A reviewer still checks your work.")
 
